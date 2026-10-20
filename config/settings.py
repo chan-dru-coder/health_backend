@@ -1,15 +1,15 @@
-from pathlib import Path
-from datetime import timedelta
-from decouple import config, Csv
 
+from pathlib import 
+import dj_database_url
+from datetime import timedelta
+from decouple import config
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
 SECRET_KEY = config('SECRET_KEY', default='django-insecure-mediconnect-super-secret-key-change-in-production')
 DEBUG = config('DEBUG', default=True, cast=bool)
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1,testserver', cast=Csv())
-
+ALLOWED_HOSTS = config("ALLOWED_HOSTS", default="").split(",")
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
