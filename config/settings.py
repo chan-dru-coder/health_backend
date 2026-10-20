@@ -1,7 +1,3 @@
-"""
-Django settings for MediConnect project.
-"""
-
 from pathlib import Path
 from datetime import timedelta
 from decouple import config, Csv
@@ -45,6 +41,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -109,6 +106,10 @@ USE_TZ = True
 
 # Static files
 STATIC_URL = 'static/'
+DATABASES = {
+    "default": dj_database_url.config(default=config("DATABASE_URL"), conn_max_age=600)
+}
+
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
